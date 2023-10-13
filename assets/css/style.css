@@ -279,9 +279,10 @@ a:hover {
   animation-delay: 0.8s;
   color: #fff;
   border: 2px solid #ffc56e;
+  background: transparent;
 }
 
-#hero .btn-menu:hover{
+#hero .btn-menu:hover {
   background: var(--color-btn-hover);
   color: #fff;
 }

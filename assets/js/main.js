@@ -35,6 +35,20 @@
   };
 
   /**
+   * Scrolls to an element with header offset
+   */
+  const scrollto = (el) => {
+    let header = select('#header');
+    let offset = header.offsetHeight + 60;
+
+    let elementPos = select(el).offsetTop;
+    window.scrollTo({
+      top: elementPos - offset,
+      behavior: 'smooth',
+    });
+  };
+
+  /**
    * Navbar links active state on scroll
    */
   window.addEventListener('DOMContentLoaded', (event) => {
@@ -77,43 +91,6 @@
       });
     });
   });
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let header = select('#header');
-    let offset = header.offsetHeight;
-
-    let elementPos = select(el).offsetTop;
-    window.scrollTo({
-      top: elementPos - offset,
-      behavior: 'smooth',
-    });
-  };
-
-  /**
-   * Toggle .header-scrolled class to #header when page is scrolled
-   */
-  let selectHeader = select('#header');
-  let selectTopbar = select('#topbar');
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled');
-        if (selectTopbar) {
-          selectTopbar.classList.add('topbar-scrolled');
-        }
-      } else {
-        selectHeader.classList.remove('header-scrolled');
-        if (selectTopbar) {
-          selectTopbar.classList.remove('topbar-scrolled');
-        }
-      }
-    };
-    window.addEventListener('load', headerScrolled);
-    onscroll(document, headerScrolled);
-  }
 
   /**
    * Back to top button
@@ -165,13 +142,6 @@
       if (select(this.hash)) {
         e.preventDefault();
 
-        let navbar = select('#navbar');
-        if (navbar.classList.contains('navbar-mobile')) {
-          navbar.classList.remove('navbar-mobile');
-          let navbarToggle = select('.mobile-nav-toggle');
-          navbarToggle.classList.toggle('bi-list');
-          navbarToggle.classList.toggle('bi-x');
-        }
         scrollto(this.hash);
       }
     },
