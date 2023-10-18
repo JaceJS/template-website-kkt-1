@@ -54,7 +54,7 @@
   window.addEventListener('DOMContentLoaded', (event) => {
     // Navbar shrink function
     var navbarShrink = function () {
-      const navbarCollapsible = document.body.querySelector('#mainNav');
+      const navbarCollapsible = select('#mainNav');
       if (!navbarCollapsible) {
         return;
       }
@@ -71,15 +71,6 @@
     // Shrink the navbar when page is scrolled
     document.addEventListener('scroll', navbarShrink);
 
-    //  Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-      new bootstrap.ScrollSpy(document.body, {
-        target: '#mainNav',
-        rootMargin: '0px 0px -40%',
-      });
-    }
-
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
     const responsiveNavItems = [].slice.call(document.querySelectorAll('#navbarResponsive .nav-link'));
@@ -91,22 +82,6 @@
       });
     });
   });
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top');
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active');
-      } else {
-        backtotop.classList.remove('active');
-      }
-    };
-    window.addEventListener('load', toggleBacktotop);
-    onscroll(document, toggleBacktotop);
-  }
 
   /**
    * Mobile nav toggle
@@ -131,6 +106,22 @@
     },
     true
   );
+
+  /**
+   * Back to top button
+   */
+  let backtotop = select('.back-to-top');
+  if (backtotop) {
+    const toggleBacktotop = () => {
+      if (window.scrollY > 100) {
+        backtotop.classList.add('active');
+      } else {
+        backtotop.classList.remove('active');
+      }
+    };
+    window.addEventListener('load', toggleBacktotop);
+    onscroll(document, toggleBacktotop);
+  }
 
   /**
    * Scrool with ofset on links with a class name .scrollto
